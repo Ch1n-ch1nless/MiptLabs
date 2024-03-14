@@ -48,27 +48,31 @@ void LeastSignificantDigitSort(int* const src_array, const int array_size)
     free(res_array);
 }
 
-static void CountSort(int* const src_array, int array_size, int digit_pos)
+static void CountSort(int* const src_array, int array_size, int shift)
 {
     assert((src_array != NULL) && "Pointer to \'array\' is NULL!!!\n");
 
-    int  pref_count[16] = {0};
+    if (array_size == 0) return;
+
+    int  pref_count[MAX_PREF_SIZE] = {0};
     int* res_array = (int*) calloc(array_size, sizeof(int));
     assert((res_array != NULL) && "Program can not allocate memory!\n");
 
-    for (int i = 0; i < 16; i++)
+    int bit_mask = 0xff << shift;
+
+    for (int i = 0; i < array_size; i++)
     {
-        pref_count[(src_array[i] / digit_pos) % 16]++;
+        pref_count[(src_array[i] && bit_mask) >> shift]++;
     }
 
-    for (int i = 1; i < 16; i++)
+    for (int i = 1; i < 256; i++)
     {
         pref_count[i] += pref_count[i-1];
     }
 
-    for (int i = array_size - 1; i > -1; i--)
+    for (int i = array_size-1; i > -1; i--)
     {
-        res_array[--pref_count[(src_array[i] / digit_pos) % 16]] = src_array[i];
+        res_array[--pref_count[(src_array[i] && bit_mask) >> shift]] = src_array[i];
     }
 
     for (int i = 0; i < array_size; i++)
@@ -77,24 +81,18 @@ static void CountSort(int* const src_array, int array_size, int digit_pos)
     }
 
     free(res_array);
+
+    if (shift > 0) {
+        CountSort(src_array, pref_count[0], shift - 8);
+        for (size_t i = 1; i < MAX_PREF_SIZE; i++) {
+            CountSort(src_array + pref_count[i - 1], pref_count[i] -pref_count[i - 1], shift - 8);
+        }
+    }
 }
 
 void MostSignificantDigitSort(int* const array, const int array_size)
 {
     assert((array != NULL) && "Pointer to \'array\' is NULL!!!\n");
 
-    int max_elem = array[0];
-
-    for (int i = 1; i < array_size; i++)
-    {
-        max_elem = (max_elem < array[i]) ? array[i] : max_elem;
-    }
-
-    int digit_pos = 1;
-
-    while (max_elem / digit_pos > 0)
-    {
-        CountSort(array, array_size, digit_pos);
-        digit_pos *= 16;
-    }
+    CountSort(array, array_size, 8 * (sizeof(int)) - 1);
 }

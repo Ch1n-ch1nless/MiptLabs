@@ -9,9 +9,9 @@ int main()
 
     size_t number_of_repetitions = 1;
 
-    FILE* time_list = fopen("MSD_time.txt", "w");
+    FILE* time_list = fopen("LSD_time.txt", "w");
 
-    TestCorrectnessOfSortings(dir_path, from, to, step, time_list, number_of_repetitions, MostSignificantDigitSort);
+    TestCorrectnessOfSortings(dir_path, from, to, step, time_list, number_of_repetitions, LeastSignificantDigitSort);
 
     return 0;
 }
