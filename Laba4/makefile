@@ -6,16 +6,16 @@ CFLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal
 	   -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor\
 	   -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing\
 	   -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla\
-	   -D_DEBUG -mavx2 -mfma -mavx -msse4.2 -DNDEBUG -DLINEAR_BUILD
+	   -D_DEBUG -mavx2 -mfma -mavx -msse4.2 -DNDEBUG
 
 all: test.o binary_heap.o
-	$(CC) $(CFLAGS) test.o binary_heap.o -o binary_heap.out
+	$(CC) test.o binary_heap.o -o binary_heap.out
 
 test.o : test.cpp
-	$(CC) $(CFLAGS) -c test.cpp -o test.o
+	$(CC) $(CFLAGS) $(FLAG) -c test.cpp -o test.o
 
 binary_heap.o : binary_heap.cpp
-	$(CC) $(CFLAGS) -c binary_heap.cpp -o binary_heap.o
+	$(CC) $(CFLAGS) $(FLAG) -c binary_heap.cpp -o binary_heap.o
 
 clean:
 	rm test.o binary_heap.o
