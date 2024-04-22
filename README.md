@@ -39,6 +39,9 @@
 
 Реализация на Си:
 ``` C
+//[in]:     heap     - указатель на бинарную кучу.
+//[in]:     index   - индекс узла кучи
+//[out]:    no
 void SiftUp (BinaryHeap* heap, size_t index)
 {
     assert((heap != NULL) && "Pointer to \'heap\' is NULL!!!\n");
@@ -73,6 +76,9 @@ void SiftUp (BinaryHeap* heap, size_t index)
 
 Реализация на Си:
 ``` C
+//[in]:     heap     - указатель на бинарную кучу.
+//[in]:     index   - индекс узла кучи
+//[out]:    no
 void SiftDown(BinaryHeap* heap, size_t index)
 {
     assert((heap != NULL) && "Pointer to \'heap\' is NULL!!!\n");
@@ -141,6 +147,10 @@ int BinaryHeapInsert(BinaryHeap* heap, node_t new_node)
 
 Код на Си:
 ``` C
+//[in]:     heap                - указатель на бинарную кучу.
+//[in]:     buffer_with_nodes   - указатель на массив элементов для вставки.
+//[in]:     buffer_size         - размер массива элементов 
+//[out]:    OK / ERROR  = вставка произошла успешно / неуспешно.
 int BinaryHeapBuildForNlogN(BinaryHeap* heap, node_t* buffer_with_nodes, size_t buffer_size)
 {
     assert((heap != NULL) && "Pointer to \'heap\' is NULL!!!\n");
@@ -169,6 +179,10 @@ $T(N) = O(NlogN)$. ПОБЕДА!!! 🥳🥳
 
 Код на Си:
 ``` C
+//[in]:     heap                - указатель на бинарную кучу.
+//[in]:     buffer_with_nodes   - указатель на массив элементов для вставки.
+//[in]:     buffer_size         - размер массива элементов 
+//[out]:    OK / ERROR  = вставка произошла успешно / неуспешно.
 int BinaryHeapBuildForN(BinaryHeap* heap, node_t* buffer_with_nodes, size_t buffer_size)
 {
     assert((heap != NULL) && "Pointer to \'heap\' is NULL!!!\n");
@@ -195,11 +209,11 @@ int BinaryHeapBuildForN(BinaryHeap* heap, node_t* buffer_with_nodes, size_t buff
 Очевидно, что $T(N) < O(NlogN)$. Докажем, что $T(N) = O(N)$.
 
 Так как время работы *SiftDown* зависит от высоты вершины, с которой её вызывают, а ещё учитывая, что число вершин высоты h не превышает $\lceil \frac{n}{2^{h+1}} \rceil$, а высота всей кучи не превышает $\lfloor logN \rfloor$, то имеем следующую оценку:
-$$\displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \lceil \frac{N}{2^{h+1}} \rceil O(h) = O(N\displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \lceil \frac{h}{2^{h+1}} \rceil)$$
+$$\displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \bigg\lceil \frac{N}{2^{h+1}} \bigg\rceil O(h) = O(N\displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \bigg\lceil \frac{h}{2^{h+1}} \bigg\rceil)$$
 
-Рассмотрим $\displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \lceil \frac{h}{2^{h+1}} \rceil = \displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \lceil (\frac{1}{2} * \frac{h-1}{2^{h}} + \frac{1}{2^{h+1}}) \rceil = \frac{1}{2} * \displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \lceil \frac{h-1}{2^{h}} \rceil + \displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \lceil \frac{1}{2^{h+1}} \rceil$
+Рассмотрим $\displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \bigg\lceil \frac{h}{2^{h+1}} \bigg\rceil = \displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \bigg\lceil (\frac{1}{2} * \frac{h-1}{2^{h}} + \frac{1}{2^{h+1}}) \bigg\rceil = \frac{1}{2} * \displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \bigg\lceil \frac{h-1}{2^{h}} \bigg\rceil + \displaystyle\sum_{h=0}^{\lfloor logN \rfloor} \bigg\lceil \frac{1}{2^{h+1}} \bigg\rceil$
 
-Заметим, что $S = \frac{S}{2} + 1$ $\Rightarrow S = 2 \RightArrow T(N) = O(N)$. Что и требовалось доказать!
+Заметим, что $S = \frac{S}{2} + 1$ $\Rightarrow S = 2 \Rightarrow T(N) = O(N)$. Что и требовалось доказать!
 
 # Измерение времени работы
 
