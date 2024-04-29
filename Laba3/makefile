@@ -39,5 +39,10 @@ punct3:
 	$(CC) $(CFLAGS) -c Punct#3/main.cpp -o Punct#3/main.o
 	$(CC) -g Punct#3/main.o Punct#3/merge_sort.o -o test_punct3.exe
 
+punct4:
+	$(CC) $(CFLAGS) -c Punct#4/quick_sort_partition.cpp -o Punct#4/quick_sort_partition.o
+	$(CC) $(CFLAGS) -c Punct#4/main.cpp -o Punct#4/main.o
+	$(CC) -g Punct#4/main.o Punct#4/quick_sort_partition.o -o test_punct4.exe
+
 clean:
 	rm *.o

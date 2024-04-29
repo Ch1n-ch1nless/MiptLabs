@@ -1,4 +1,4 @@
-#include "testing.h"
+#include "quick_sort_partition.h"
 
 static void _swap(int* const elem1, int* const elem2)
 {
@@ -15,26 +15,9 @@ static int _get_pivot(int* const array, const int begin, const int end)
     assert((array != NULL) && "Pointer to \'array\' is NULL!!!\n");
     assert((begin <= end)  && "Incorrect values of begin and end!!!\n");
 
-    int index1 = begin + rand() % (end - begin);
-    int index2 = begin + rand() % (end - begin);
-    int index3 = begin + rand() % (end - begin);
+    int middle = begin + (end - begin) / 2;
 
-    if (array[index1] < array[index2])
-    {
-        if (array[index3] < array[index1])
-        {
-            return array[index1];
-        }
-
-        return (array[index2] < array[index3]) ? array[index2] : array[index3];
-    }
-    
-    if (array[index3] < array[index2])
-    {
-        return array[index2];
-    }
-
-    return (array[index1] < array[index3]) ? array[index1] : array[index3];
+    return array[middle];
 }
 
 static int _lomuto_partition(int* const array, const int begin, const int end)
@@ -75,7 +58,7 @@ static void _lomuto_quick_sort(int* const array, const int begin, const int end)
     }
 }
 
-static void _hoara_partition(int* const array, const int begin, const int end, const int pivot, int* const new_begin, int* const new_end)
+static void _hoar_partition(int* const array, const int begin, const int end, const int pivot, int* const new_begin, int* const new_end)
 {
     assert((array != NULL)  && "Pointer to \"array\" is NULL!!!\n");
     assert((begin >= 0)     && "Function has incorrect value of \"begin\"!!!\n");
@@ -100,7 +83,7 @@ static void _hoara_partition(int* const array, const int begin, const int end, c
     }
 }
 
-static void _hoara_quick_sort(int* const array, const int begin, const int end)
+static void _hoar_quick_sort(int* const array, const int begin, const int end)
 {
     assert((array != NULL) && "Pointer to \'array\' is NULL!!!\n");
 
@@ -110,16 +93,16 @@ static void _hoara_quick_sort(int* const array, const int begin, const int end)
         int new_begin = 0;
         int new_end   = 0;
 
-        _hoara_partition(array, begin, end, pivot, &new_begin, &new_end);
+        _hoar_partition(array, begin, end, pivot, &new_begin, &new_end);
 
         if (begin < new_end)
         {
-            _hoara_quick_sort(array, begin, new_end);
+            _hoar_quick_sort(array, begin, new_end);
         }
 
         if (new_begin < end)
         {
-            _hoara_quick_sort(array, new_begin, end);
+            _hoar_quick_sort(array, new_begin, end);
         }
     }
 }
@@ -191,7 +174,7 @@ static void _one_branch_quick_sort(int* const array, int begin, int end)
         int new_begin = 0;
         int new_end   = 0;
 
-        _hoara_partition(array, begin, end, pivot, &new_begin, &new_end);
+        _hoar_partition(array, begin, end, pivot, &new_begin, &new_end);
 
         if (begin < new_end)
         {
@@ -202,11 +185,30 @@ static void _one_branch_quick_sort(int* const array, int begin, int end)
     }
 }
 
-void QuickSort(int* const array, const int array_size)
+void QuickSortWithLomutoPartition(int* const array, const size_t array_size)
 {
-    assert((array != NULL) && "Pointer to \'array\' is NULL!!!\n");
-    
-    if (array_size == 0) return;
+    assert((array != NULL) && "ERROR!!! Pointer to \'\' is NULL!\n");
 
-    _hoara_quick_sort(array, 0, array_size - 1);
+    _lomuto_quick_sort(array, 0, array_size - 1);
+}
+
+void QuickSortWithHoarPartitionTwoBranches(int* const array, const size_t array_size)
+{
+    assert((array != NULL) && "ERROR!!! Pointer to \'\' is NULL!\n");
+
+    _hoar_quick_sort(array, 0, array_size - 1);
+}
+
+void QuickSortWithHoarPartitionOneBranch(int* const array, const size_t array_size)
+{
+    assert((array != NULL) && "ERROR!!! Pointer to \'\' is NULL!\n");
+
+    _one_branch_quick_sort(array, 0, array_size - 1);
+}
+
+void QuickSortWithFlagPartition(int* const array, const size_t array_size)
+{
+    assert((array != NULL) && "ERROR!!! Pointer to \'\' is NULL!\n");
+
+    _flag_quick_sort(array, 0, array_size - 1);
 }
