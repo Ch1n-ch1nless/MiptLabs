@@ -21,9 +21,6 @@ const char* const TEST_MOST_DUBLICATES_PATH = "test_most_dublicates/";
 const int TRUE  = 1;
 const int FALSE = 0;
 
-void    RecursiveMergeSort(int* const array, const size_t array_size);
-void    IterativeMergeSort(int* const array, const size_t array_size);
-
 void    QuickSort(int* const array, const int array_size);
 
 void    IntroSort(int* const array, const int array_size);

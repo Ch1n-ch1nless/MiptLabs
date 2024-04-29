@@ -7,7 +7,7 @@ CFLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal
 	   -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor\
 	   -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing\
 	   -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla\
-	   -D_DEBUG 
+	   -D_DEBUG -g
 
 all:	test_generate
 
@@ -33,6 +33,11 @@ punct2:
 	$(CC) $(CFLAGS) -c Punct#2/heap_sort.cpp -o Punct#2/heap_sort.o
 	$(CC) $(CFLAGS) -c Punct#2/main.cpp -o Punct#2/main.o
 	$(CC) Punct#2/main.o Punct#2/heap_sort.o -o test_punct2.exe
+
+punct3:
+	$(CC) $(CFLAGS) -c Punct#3/merge_sort.cpp -o Punct#3/merge_sort.o
+	$(CC) $(CFLAGS) -c Punct#3/main.cpp -o Punct#3/main.o
+	$(CC) -g Punct#3/main.o Punct#3/merge_sort.o -o test_punct3.exe
 
 clean:
 	rm *.o
