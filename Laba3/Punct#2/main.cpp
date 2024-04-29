@@ -1,6 +1,6 @@
-#include "testing.h"
+#include "heap_sort.h"
 
-int main()
+int main(int argc, const char* argv[])
 {
     const char* dir_path = BIG_TESTS_PATH;
     size_t from = 0;
@@ -9,16 +9,42 @@ int main()
 
     size_t number_of_repetitions = 1;
 
-    FILE* time_list = fopen("LSD_time.txt", "w");
+    FILE*   file_ptr = NULL;
 
-    TestCorrectnessOfSortings(dir_path, from, to, step, time_list, number_of_repetitions, LeastSignificantDigitSort);
+    for (int number_of_children = 2; number_of_children < 10; number_of_children++)
+    {
+        file_ptr = OpenFile("TimeFiles/heap_sort_", number_of_children, 0, ".csv", "w");
+        TestCorrectnessOfSortings(dir_path, from, to, step, file_ptr, number_of_repetitions, number_of_children, HeapSort);
+        fclose(file_ptr);
+    }
 
     return 0;
 }
 
+FILE* OpenFile(const char* const dir_path, const size_t cur_size, const size_t k, const char* const extension, const char* const mode)
+{
+    assert((dir_path != NULL) && "Pointer to \'dir_path\' is NULL!!!\n");
+
+    char* file_name = (char*) calloc(128, sizeof(char));
+    assert((file_name != NULL) && "Program can not allocate memory!!\n");
+
+    strncpy(file_name, dir_path, strlen(dir_path));
+
+    sprintf(file_name + strlen(file_name), "%ld_%ld", cur_size, k);   
+
+    strncat(file_name, extension, strlen(extension));
+
+    FILE* file = fopen(file_name, mode);
+
+    assert((file != NULL) && "pointer to \'file\' is NULL!!!\n");
+
+    return file;
+}
+
 void TestCorrectnessOfSortings(const char* const dir_path, const size_t from, const size_t to, 
                                const size_t step, FILE* time_list, size_t number_of_repetitions,
-                               void (*sort_function) (int* const array, const int array_size))
+                               int number_of_children,
+                               void (*sort_function) (int* const array, const int array_size, const int number_of_childrens))
 {
     assert((dir_path      != NULL) && "Pointer to string \'dir_path\' is NULL!!!\n");
     assert((sort_function != NULL) && "Pointer to function \'sort_function\' is NULL!!!\n");
@@ -36,8 +62,8 @@ void TestCorrectnessOfSortings(const char* const dir_path, const size_t from, co
     {
         for (size_t k = 0; k < number_of_repetitions; k++)
         {
-            FILE* input  = OpenFile(dir_path, cur_size, k, ".in");
-            FILE* output = OpenFile(dir_path, cur_size, k, ".out");
+            FILE* input  = OpenFile(dir_path, cur_size, k, ".in", "rb+");
+            FILE* output = OpenFile(dir_path, cur_size, k, ".out", "rb+");
 
             for (size_t i = 0; i < cur_size; i++)
             {
@@ -49,10 +75,10 @@ void TestCorrectnessOfSortings(const char* const dir_path, const size_t from, co
 
             double time = 0;
             clock_t time_start = clock();
-            sort_function(array, cur_size);
+            sort_function(array, cur_size, number_of_children);
             clock_t time_end = clock();
 
-            time = (time_end - time_start) / (CLOCKS_PER_SEC / 1000);
+            time = (time_end - time_start) / (CLOCKS_PER_SEC / 1000000);
 
             int elem = 0;
 
@@ -74,32 +100,10 @@ void TestCorrectnessOfSortings(const char* const dir_path, const size_t from, co
         time_array[index].size /= number_of_repetitions;
 
         fprintf(time_list, "%ld; %lf\n", time_array[index].size, time_array[index].time);
-        printf("%ld; %lf\n", time_array[index].size, time_array[index].time);
 
         index++;
     }
 
     free(array);
     free(time_array);
-}
-
-
-FILE* OpenFile(const char* const dir_path, const size_t cur_size, const size_t k, const char* const extension)
-{
-    assert((dir_path != NULL) && "Pointer to \'dir_path\' is NULL!!!\n");
-
-    char* file_name = (char*) calloc(128, sizeof(char));
-    assert((file_name != NULL) && "Program can not allocate memory!!\n");
-
-    strncpy(file_name, dir_path, strlen(dir_path));
-
-    sprintf(file_name + strlen(file_name), "%ld_%ld", cur_size, k);   
-
-    strncat(file_name, extension, strlen(extension));
-
-    FILE* file = fopen(file_name, "rb+");
-
-    assert((file != NULL) && "pointer to \'file\' is NULL!!!\n");
-
-    return file;
 }

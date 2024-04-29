@@ -29,5 +29,10 @@ punct1:
 	$(CC) $(CFLAGS) -c Punct#1/main.cpp -o Punct#1/main.o
 	$(CC) Punct#1/main.o Punct#1/quadratic_sorts.o Punct#1/shell_sort.o -o test_punct1.exe
 
+punct2:
+	$(CC) $(CFLAGS) -c Punct#2/heap_sort.cpp -o Punct#2/heap_sort.o
+	$(CC) $(CFLAGS) -c Punct#2/main.cpp -o Punct#2/main.o
+	$(CC) Punct#2/main.o Punct#2/heap_sort.o -o test_punct2.exe
+
 clean:
 	rm *.o

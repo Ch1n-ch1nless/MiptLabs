@@ -26,8 +26,6 @@ void    IterativeMergeSort(int* const array, const size_t array_size);
 
 void    QuickSort(int* const array, const int array_size);
 
-void    HeapSort(int* const array, const int array_size);
-
 void    IntroSort(int* const array, const int array_size);
 
 void    LeastSignificantDigitSort(int* const src_array, const int array_size);

@@ -1,12 +1,4 @@
-#include "testing.h"
-
-struct Heap
-{
-    int* data;
-    int  size;
-    int  capacity;
-    int  children;
-};
+#include "heap_sort.h"
 
 static void Swap(int* const ptr1, int* const ptr2)
 {

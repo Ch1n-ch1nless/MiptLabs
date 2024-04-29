@@ -10,6 +10,6 @@ for (( i=$from; i <= $to; i += $step))
 do
 touch "test_most_dublicates/${i}.in"
 touch "test_most_dublicates/${i}.out"
-./TestGenerator/create_random_array.exe $i $max_value "test_most_dublicates/${i}.in" $RANDOM
-./TestGenerator/qsort_random_array.exe $i "test_most_dublicates/${i}.in" "test_most_dublicates/${i}.out"
+./TestGenerator/create_random_array.exe $i $max_value "test_most_dublicates/${i}_0.in" $RANDOM
+./TestGenerator/qsort_random_array.exe $i "test_most_dublicates/${i}_0.in" "test_most_dublicates/${i}_0.out"
 done
