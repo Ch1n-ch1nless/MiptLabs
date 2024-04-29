@@ -1,6 +1,6 @@
-#include "testing.h"
+#include "quadratic_sorts.h"
 
-void ShellSort(int* const array, const int array_size)
+void ShellSort(int* const array, const size_t array_size)
 {
     assert((array != NULL) && "Pointer to \'array\' is NULL!!!\n");
 

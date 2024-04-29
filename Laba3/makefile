@@ -23,5 +23,11 @@ test_generate:
 	chmod +x TestGenerator/test_most_dublicates.sh
 	./TestGenerator/test_most_dublicates.sh
 
+punct1:
+	$(CC) $(CFLAGS) -c Punct#1/quadratic_sorts.cpp -o Punct#1/quadratic_sorts.o
+	$(CC) $(CFLAGS) -c Punct#1/shell_sort.cpp -o Punct#1/shell_sort.o
+	$(CC) $(CFLAGS) -c Punct#1/main.cpp -o Punct#1/main.o
+	$(CC) Punct#1/main.o Punct#1/quadratic_sorts.o Punct#1/shell_sort.o -o test_punct1.exe
+
 clean:
 	rm *.o

@@ -1,4 +1,4 @@
-#include "testing.h"
+#include "quadratic_sorts.h"
 
 void BubbleSort(int* const array, const size_t array_size)
 {
