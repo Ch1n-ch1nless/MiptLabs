@@ -1,14 +1,12 @@
-#ifndef QUICK_SORT_PIVOT_CHOICE_H
-#define QUICK_SORT_PIVOT_CHOICE_H
+#ifndef SORTINGS_H_INCLUDED
+#define SORTINGS_H_INCLUDED
 
 #include "../testing.h"
 
 /*===Declaration_of_sortings===*/
 
-void    QuickSortWithCentralPivot(int* const array, const size_t array_size);
-void    QuickSortWithMedianOf3Elements(int* const array, const size_t array_size);
-void    QuickSortWithRandomPivot(int* const array, const size_t array_size);
-void    QuickSortWithMedianOf3RandomElements(int* const array, const size_t array_size);
+void    QuickSort(int* const array, const size_t array_size);
+void    ShellSort(int* const array, const size_t array_size);
 
 /*=============================*/
 

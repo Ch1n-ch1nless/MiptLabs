@@ -49,5 +49,10 @@ punct5:
 	$(CC) $(CFLAGS) -c Punct#5/main.c -o Punct#5/main.o
 	$(CC) -g Punct#5/main.o Punct#5/quick_sort_pivot_choice.o -o test_punct5.exe
 
+punct6:
+	$(CC) $(CFLAGS) -c Punct#6/sortings.c -o Punct#6/sortings.o
+	$(CC) $(CFLAGS) -c Punct#6/main.c -o Punct#6/main.o
+	$(CC) -g Punct#6/main.o Punct#6/sortings.o -o test_punct6.exe
+
 clean:
 	rm *.o
