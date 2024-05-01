@@ -1,4 +1,4 @@
-CC=gcc
+CC=g++
 
 CFLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal\
        -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs \
@@ -53,6 +53,11 @@ punct6:
 	$(CC) $(CFLAGS) -c Punct#6/sortings.c -o Punct#6/sortings.o
 	$(CC) $(CFLAGS) -c Punct#6/main.c -o Punct#6/main.o
 	$(CC) -g Punct#6/main.o Punct#6/sortings.o -o test_punct6.exe
+
+punct7:
+	$(CC) $(CFLAGS) -c Punct#7/intro_sort.c -o Punct#7/intro_sort.o
+	$(CC) $(CFLAGS) -c Punct#7/main.c -o Punct#7/main.o
+	$(CC) -g Punct#7/main.o Punct#7/intro_sort.o -o test_punct7.exe
 
 clean:
 	rm *.o
