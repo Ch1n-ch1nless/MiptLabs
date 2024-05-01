@@ -1,8 +1,8 @@
-#include "testing.h"
+#include "not_cmp_sorts.h"
 
 const int MAX_PREF_SIZE = 256;
 
-void LeastSignificantDigitSort(int* const src_array, const int array_size)
+void LeastSignificantDigitSort(int* const src_array, const size_t array_size)
 {
     assert((src_array != NULL) && "Pointer to \'src_array\' is NULL!!!\n");
 
@@ -48,7 +48,7 @@ void LeastSignificantDigitSort(int* const src_array, const int array_size)
     free(res_array);
 }
 
-static void CountSort(int* const src_array, int array_size, int shift)
+static void CountSort(int* const src_array, size_t array_size, int shift)
 {
     assert((src_array != NULL) && "Pointer to \'array\' is NULL!!!\n");
 
@@ -90,7 +90,7 @@ static void CountSort(int* const src_array, int array_size, int shift)
     }
 }
 
-void MostSignificantDigitSort(int* const array, const int array_size)
+void MostSignificantDigitSort(int* const array, const size_t array_size)
 {
     assert((array != NULL) && "Pointer to \'array\' is NULL!!!\n");
 

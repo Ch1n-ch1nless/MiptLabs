@@ -24,9 +24,6 @@ const char* const TEST_MOST_DUBLICATES_PATH = "test_most_dublicates/";
 const int TRUE  = 1;
 const int FALSE = 0;
 
-void    LeastSignificantDigitSort(int* const src_array, const int array_size);
-void    MostSignificantDigitSort(int* const array, const int array_size);
-
 /*============================================*/
 
 #endif

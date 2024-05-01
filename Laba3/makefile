@@ -7,7 +7,7 @@ CFLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal
 	   -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor\
 	   -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing\
 	   -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla\
-	   -D_DEBUG -g
+	   -D_DEBUG
 
 all:	test_generate
 
@@ -58,6 +58,11 @@ punct7:
 	$(CC) $(CFLAGS) -c Punct#7/intro_sort.c -o Punct#7/intro_sort.o
 	$(CC) $(CFLAGS) -c Punct#7/main.c -o Punct#7/main.o
 	$(CC) -g Punct#7/main.o Punct#7/intro_sort.o -o test_punct7.exe
+
+punct8:
+	$(CC) $(CFLAGS) -c Punct#8/not_cmp_sorts.c -o Punct#8/not_cmp_sorts.o
+	$(CC) $(CFLAGS) -c Punct#8/main.c -o Punct#8/main.o
+	$(CC) -g Punct#8/main.o Punct#8/not_cmp_sorts.o -o test_punct8.exe
 
 clean:
 	rm *.o
