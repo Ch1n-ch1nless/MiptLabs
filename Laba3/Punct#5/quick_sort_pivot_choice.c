@@ -54,9 +54,11 @@ static int GetMedianOfThreeRandomElements(int* array, int begin, int end)
 {
     assert((array != NULL) && "ERROR!!! Pointer to \'array\' is NULL!\n");
 
-    int index1 = begin + rand() % (end - begin);
-    int index2 = begin + rand() % (end - begin);
-    int index3 = begin + rand() % (end - begin);
+    int size = end - begin;
+
+    int index1 = begin + rand() % size;
+    int index2 = begin + rand() % size;
+    int index3 = begin + rand() % size;
 
     int value1  = array[index1];
     int value2  = array[index2];
