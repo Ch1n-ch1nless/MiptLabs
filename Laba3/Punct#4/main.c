@@ -9,7 +9,8 @@ int main()
 
     size_t number_of_repetitions = 1;
 
-    /*FILE* time_list = fopen("TimeFiles/lomuto_partition_time_no_dub.csv", "w");
+    //Create time files on big_tests
+    FILE* time_list = fopen("TimeFiles/lomuto_partition_time_no_dub.csv", "w");
     TestCorrectnessOfSortings(dir_path, from, to, step, time_list, number_of_repetitions, QuickSortWithLomutoPartition);
     fclose(time_list);
 
@@ -23,9 +24,10 @@ int main()
 
     time_list = fopen("TimeFiles/flag_partition_time_no_dub.csv", "w");
     TestCorrectnessOfSortings(dir_path, from, to, step, time_list, number_of_repetitions, QuickSortWithFlagPartition);
-    fclose(time_list);*/
+    fclose(time_list);
 
-    FILE* time_list = fopen("TimeFiles/lomuto_partition_time_dub.csv", "w");
+    //Create time files on test_most_dublicates
+    time_list = fopen("TimeFiles/lomuto_partition_time_dub.csv", "w");
     TestCorrectnessOfSortings(dir_path, from, to, step, time_list, number_of_repetitions, QuickSortWithLomutoPartition);
     fclose(time_list);
 
