@@ -21,8 +21,10 @@ const char* const SMALL_TESTS_PATH          = "small_tests/";
 const char* const BIG_TESTS_PATH            = "big_tests/";
 const char* const TEST_MOST_DUBLICATES_PATH = "test_most_dublicates/";
 
-const int TRUE  = 1;
-const int FALSE = 0;
+const int TRUE                  = 1;
+const int FALSE                 = 0;
+
+const int MAX_SIZE_OF_FILE_NAME = 128;
 
 /*============================================*/
 

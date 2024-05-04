@@ -24,7 +24,7 @@ FILE* OpenFile(const char* const dir_path, const size_t cur_size, const size_t k
 {
     assert((dir_path != NULL) && "Pointer to \'dir_path\' is NULL!!!\n");
 
-    char* file_name = (char*) calloc(128, sizeof(char));
+    char* file_name = (char*) calloc(MAX_SIZE_OF_FILE_NAME, sizeof(char));
     assert((file_name != NULL) && "Program can not allocate memory!!\n");
 
     strncpy(file_name, dir_path, strlen(dir_path));
