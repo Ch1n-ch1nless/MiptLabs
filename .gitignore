@@ -1,5 +1,6 @@
-*.json
-.vscode/*.json
-*.csv
+.vscode
 *.o
 *.out
+*.in
+*.exe
+*.csv
