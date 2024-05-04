@@ -1,1 +1,7 @@
+
 .vscode
+*.o
+*.out
+*.in
+*.exe
+*.csv
