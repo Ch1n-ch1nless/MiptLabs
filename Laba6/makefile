@@ -16,3 +16,8 @@ test_generate:
 	$(CC) $(CFLAGS) TestGenerator/create_sorted_test.cpp -o TestGenerator/create_sorted_test.exe
 	chmod +x TestGenerator/generate_tests.sh
 	./TestGenerator/generate_tests.sh
+
+create_bst:
+	$(CC) $(CFLAGS) -c BinarySearchTree/main.cpp -o BinarySearchTree/main.o
+	$(CC) $(CFLAGS) -c BinarySearchTree/binary_tree.cpp -o BinarySearchTree/binary_tree.o
+	$(CC) BinarySearchTree/main.o BinarySearchTree/binary_tree.o -o binary_tree.exe
