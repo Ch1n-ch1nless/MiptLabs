@@ -15,6 +15,7 @@ typedef struct Node
     int value;
     struct Node* left;
     struct Node* right;
+    struct Node* parent;
 } Node;
 
 typedef struct BinaryTree
