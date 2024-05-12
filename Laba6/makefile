@@ -31,3 +31,8 @@ create_trp:
 	$(CC) $(CFLAGS) -c Treap/main.cpp -o Treap/main.o
 	$(CC) $(CFLAGS) -c Treap/treap.cpp -o Treap/treap.o
 	$(CC) Treap/main.o Treap/treap.o -o treap.exe
+
+create_splay:
+	$(CC) $(CFLAGS) -c SplayTree/main.cpp -o SplayTree/main.o
+	$(CC) $(CFLAGS) -c SplayTree/splay_tree.cpp -o SplayTree/splay_tree.o
+	$(CC) SplayTree/main.o SplayTree/splay_tree.o -o splay_tree.exe
