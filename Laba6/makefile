@@ -21,3 +21,8 @@ create_bst:
 	$(CC) $(CFLAGS) -c BinarySearchTree/main.cpp -o BinarySearchTree/main.o
 	$(CC) $(CFLAGS) -c BinarySearchTree/binary_tree.cpp -o BinarySearchTree/binary_tree.o
 	$(CC) BinarySearchTree/main.o BinarySearchTree/binary_tree.o -o binary_tree.exe
+
+create_avl:
+	$(CC) $(CFLAGS) -c AVLTree/main.cpp -o AVLTree/main.o
+	$(CC) $(CFLAGS) -c AVLTree/avl_tree.cpp -o AVLTree/avl_tree.o
+	$(CC) AVLTree/main.o AVLTree/avl_tree.o -o avl_tree.exe
