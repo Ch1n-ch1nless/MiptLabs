@@ -26,3 +26,8 @@ create_avl:
 	$(CC) $(CFLAGS) -c AVLTree/main.cpp -o AVLTree/main.o
 	$(CC) $(CFLAGS) -c AVLTree/avl_tree.cpp -o AVLTree/avl_tree.o
 	$(CC) AVLTree/main.o AVLTree/avl_tree.o -o avl_tree.exe
+
+create_trp:
+	$(CC) $(CFLAGS) -c Treap/main.cpp -o Treap/main.o
+	$(CC) $(CFLAGS) -c Treap/treap.cpp -o Treap/treap.o
+	$(CC) Treap/main.o Treap/treap.o -o treap.exe
