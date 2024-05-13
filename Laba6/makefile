@@ -36,3 +36,8 @@ create_splay:
 	$(CC) $(CFLAGS) -c SplayTree/main.cpp -o SplayTree/main.o
 	$(CC) $(CFLAGS) -c SplayTree/splay_tree.cpp -o SplayTree/splay_tree.o
 	$(CC) SplayTree/main.o SplayTree/splay_tree.o -o splay_tree.exe
+
+create_skip_list:
+	$(CC) $(CFLAGS) -c SkipList/main.cpp -o SkipList/main.o
+	$(CC) $(CFLAGS) -c SkipList/skip_list.cpp -o SkipList/skip_list.o
+	$(CC) SkipList/main.o SkipList/skip_list.o -o skip_list.exe
