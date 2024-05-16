@@ -1,5 +1,5 @@
-#ifndef FENWICK_TREE_H_INCLUDED
-#define FENWICK_TREE_H_INCLUDED
+#ifndef SPARSE_TABLE_H_INCLUDED
+#define SPARSE_TABLE_H_INCLUDED
 
 #include <assert.h>
 #include <limits.h>
@@ -12,6 +12,8 @@
 
 const size_t    MAX_NUMBER_OF_ELEMENTS  = 1000000;
 
+const int       MODULE                  = 10000000;
+
 /*==================STRUCTS===================*/
 
 typedef struct Request
@@ -20,11 +22,12 @@ typedef struct Request
     int right;
 } Request;
 
-typedef struct FenwickTree
+struct SparseTable
 {
-    int*    data;
+    int*    log2;
+    int**   data;
     size_t  size;
-} FenwickTree;
+};
 
 /*=================FUNCTIONS==================*/
 
@@ -34,15 +37,12 @@ void    ReadArguments(int argc, const char** argv, const char** file_with_number
 
 /*^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^*/
 
-/*v~~~~~~~~~~~~~~~FENWICK TREE~~~~~~~~~~~~~~~v*/
+/*v~~~~~~~~~~~~~~~SPARSE TABLE~~~~~~~~~~~~~~~v*/
 
-FenwickTree*    FenwickTreeCtor(size_t init_size, int* array);
-void            FenwickTreeDtor(FenwickTree* fenwick_tree);
+SparseTable*    SparseTableCtor(int* array, size_t array_size);
+void            SparseTableDtor(SparseTable* sparse_table);
 
-int             FenwickTreeGetSum(FenwickTree* fenwick_tree, int start);
-
-void            FenwickTreeUpdate(FenwickTree* fenwick_tree, int index, int delta);
-int             FenwickTreeFindSum(FenwickTree* fenwick_tree, int left, int right);
+int             SparseTableFindSum(SparseTable* sparse_table, int left, int right);
 
 /*^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^*/
 
@@ -55,7 +55,7 @@ Request*        ReadArrayWithRequests(const char* const filename, size_t number_
 
 /*v~~~~~~~~~~~~~~~MEASURE TIME~~~~~~~~~~~~~~~v*/
 
-double          MeasureTimeOfRequests(  FenwickTree*    fenwick_tree,
+double          MeasureTimeOfRequests(  SparseTable*    sparse_table,
                                         Request*        request_array,
                                         size_t          number_of_requests);
 

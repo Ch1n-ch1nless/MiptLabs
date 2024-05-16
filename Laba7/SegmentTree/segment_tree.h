@@ -41,7 +41,7 @@ void    ReadArguments(int argc, const char** argv, const char** file_with_number
 SegmentTree*    SegmentTreeCtor(size_t init_size, int* array);
 void            SegmentTreeDtor(SegmentTree* seg_tree);
 
-void            SegmentTreeUpdate(SegmentTree* seg_tree, int index, int new_value);
+void            SegmentTreeUpdate(SegmentTree* seg_tree,  int node, int new_value);
 int             SegmentTreeFindSum(SegmentTree* seg_tree, int left, int right);
 
 /*^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^*/

@@ -74,14 +74,14 @@ void SegmentTreeUpdate(SegmentTree* seg_tree, int index, int new_value)
     while (cur_pose > 0);
 }
 
-static int _RecursiveSegmentTreeFindSum(SegmentTree* seg_tree, int arr_left, int arr_right, int index,  int tree_left, int tree_right)
+static int _RecursiveSegmentTreeFindSum(SegmentTree* seg_tree, int arr_left, int arr_right, int node,  int tree_left, int tree_right)
 {
     if (tree_right < arr_left || tree_left  >  arr_right) return 0;
-    if (arr_left <= tree_left && tree_right <= arr_right) return seg_tree->data[index];
+    if (arr_left <= tree_left && tree_right <= arr_right) return seg_tree->data[node];
 
-    int med = (tree_left + tree_right) / 2;
-    return  _RecursiveSegmentTreeFindSum(seg_tree, arr_left, arr_right, index * 2,     tree_left, med       ) + 
-            _RecursiveSegmentTreeFindSum(seg_tree, arr_left, arr_right, index * 2 + 1, med + 1,   tree_right);
+    int med = tree_left + (tree_right - tree_left) / 2;
+    return  _RecursiveSegmentTreeFindSum(seg_tree, arr_left, arr_right, node * 2,     tree_left, med       ) + 
+            _RecursiveSegmentTreeFindSum(seg_tree, arr_left, arr_right, node * 2 + 1, med + 1,   tree_right);
 }
 
 int SegmentTreeFindSum(SegmentTree* seg_tree, int left, int right)
@@ -147,21 +147,17 @@ double MeasureTimeOfRequests(SegmentTree* seg_tree, Request* request_array, size
 
     int answer = 0;
 
-    for (int j = 0; j < 5; j++)
+    clock_t time_begin  = clock();
+
+    for (size_t i = 0; i < number_of_requests; i++)
     {
-        for (size_t i = 0; i < number_of_requests; i++)
-        {
-            clock_t time_begin  = clock();
+        answer = SegmentTreeFindSum(seg_tree, request_array[i].left, request_array[i].right);
 
-            answer = SegmentTreeFindSum(seg_tree, request_array[i].left, request_array[i].right);
-
-            clock_t time_end    = clock();
-
-            time += (double)(time_end - time_begin) / ((double) CLOCKS_PER_SEC / 1e3);
-        }
     }
+    
+    clock_t time_end    = clock();
 
-    time /= 5.0;
+    time = (double)(time_end - time_begin) / ((double) CLOCKS_PER_SEC / 1e3);
 
     return time;
 }

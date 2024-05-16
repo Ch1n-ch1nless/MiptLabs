@@ -63,10 +63,9 @@ int FenwickTreeGetSum(FenwickTree* fenwick_tree, int start)
     for (int i = start; i >= 0; i = (i & (i + 1)) - 1)
     {
         result += fenwick_tree->data[i];
-        result %= MODULE;
     }
 
-    return result % MODULE;
+    return result;
 }
 
 void FenwickTreeUpdate(FenwickTree* fenwick_tree, int index, int delta)
@@ -76,7 +75,6 @@ void FenwickTreeUpdate(FenwickTree* fenwick_tree, int index, int delta)
     for (int i = index; i < fenwick_tree->size; i = (i | (i + 1)))
     {
         fenwick_tree->data[i] += delta;
-        fenwick_tree->data[i] %= MODULE;
     }
 }
 
@@ -87,7 +85,7 @@ int FenwickTreeFindSum(FenwickTree* fenwick_tree, int left, int right)
     int right_sum   = FenwickTreeGetSum(fenwick_tree, right);
     int left_sum    = FenwickTreeGetSum(fenwick_tree, left-1);
 
-    return ((right_sum - left_sum) % MODULE + MODULE) % MODULE;
+    return right_sum - left_sum;
 }
 
 //----------------------------------------------
@@ -146,21 +144,16 @@ double MeasureTimeOfRequests(FenwickTree* fenwick_tree, Request* request_array, 
 
     int answer = 0;
 
-    for (int j = 0; j < 5; j++)
+    clock_t time_begin  = clock();
+
+    for (size_t i = 0; i < number_of_requests; i++)
     {
-        for (size_t i = 0; i < number_of_requests; i++)
-        {
-            clock_t time_begin  = clock();
-
-            answer = FenwickTreeFindSum(fenwick_tree, request_array[i].left, request_array[i].right);
-
-            clock_t time_end    = clock();
-
-            time += (double)(time_end - time_begin) / ((double) CLOCKS_PER_SEC / 1e3);
-        }
+        answer = FenwickTreeFindSum(fenwick_tree, request_array[i].left, request_array[i].right);
     }
 
-    time /= 5.0;
+    clock_t time_end    = clock();
+
+    time = (double)(time_end - time_begin) / ((double) CLOCKS_PER_SEC / 1e3);
 
     return time;
 }
