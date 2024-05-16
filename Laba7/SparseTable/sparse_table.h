@@ -8,6 +8,8 @@
 #include <string.h>
 #include <time.h>
 
+#define MIN(a, b) (a < b) ? a : b
+
 /*=================CONSTANTS==================*/
 
 const size_t    MAX_NUMBER_OF_ELEMENTS  = 1000000;
@@ -42,7 +44,7 @@ void    ReadArguments(int argc, const char** argv, const char** file_with_number
 SparseTable*    SparseTableCtor(int* array, size_t array_size);
 void            SparseTableDtor(SparseTable* sparse_table);
 
-int             SparseTableFindSum(SparseTable* sparse_table, int left, int right);
+int             SparseTableFindMin(SparseTable* sparse_table, int left, int right);
 
 /*^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^*/
 

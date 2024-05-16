@@ -152,7 +152,6 @@ double MeasureTimeOfRequests(SegmentTree* seg_tree, Request* request_array, size
     for (size_t i = 0; i < number_of_requests; i++)
     {
         answer = SegmentTreeFindSum(seg_tree, request_array[i].left, request_array[i].right);
-
     }
     
     clock_t time_end    = clock();

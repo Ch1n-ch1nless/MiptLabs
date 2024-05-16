@@ -29,6 +29,12 @@ create_seg_tree:
 	$(CC) $(CFLAGS) -g -c SegmentTree/main.cpp 		-o SegmentTree/main.o
 	$(CC) SegmentTree/segment_tree.o SegmentTree/main.o -o segment_tree.exe
 
+create_sparse_table:
+	$(CC) $(CFLAGS) -DFIRST_VERSION -g -c SparseTable/sparse_table.cpp -o SparseTable/sparse_table.o
+	$(CC) $(CFLAGS) -g -c SparseTable/main.cpp 		-o SparseTable/main.o
+	$(CC) SparseTable/sparse_table.o SparseTable/main.o -o sparse_table.exe
+
+
 clean:	
 	rm FenwickTree/fenwick_tree.o FenwickTree/main.o
 	rm TestGenerator/create_array.o TestGenerator/create_requests.o
