@@ -24,6 +24,11 @@ create_fenwick:
 	$(CC) $(CFLAGS) -g -c FenwickTree/main.cpp 		-o FenwickTree/main.o
 	$(CC) FenwickTree/fenwick_tree.o FenwickTree/main.o -o fenwick_tree.exe
 
+create_seg_tree:
+	$(CC) $(CFLAGS) -g -c SegmentTree/segment_tree.cpp -o SegmentTree/segment_tree.o
+	$(CC) $(CFLAGS) -g -c SegmentTree/main.cpp 		-o SegmentTree/main.o
+	$(CC) SegmentTree/segment_tree.o SegmentTree/main.o -o segment_tree.exe
+
 clean:	
 	rm FenwickTree/fenwick_tree.o FenwickTree/main.o
 	rm TestGenerator/create_array.o TestGenerator/create_requests.o
