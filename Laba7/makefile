@@ -19,5 +19,11 @@ test_generate:
 	chmod +x TestGenerator/generator.sh
 	./TestGenerator/generator.sh
 
+create_fenwick:
+	$(CC) $(CFLAGS) -g -c FenwickTree/fenwick_tree.cpp -o FenwickTree/fenwick_tree.o
+	$(CC) $(CFLAGS) -g -c FenwickTree/main.cpp 		-o FenwickTree/main.o
+	$(CC) FenwickTree/fenwick_tree.o FenwickTree/main.o -o fenwick_tree.exe
+
 clean:	
+	rm FenwickTree/fenwick_tree.o FenwickTree/main.o
 	rm TestGenerator/create_array.o TestGenerator/create_requests.o
